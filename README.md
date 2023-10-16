@@ -175,14 +175,14 @@ As long as you got no errors, your slurm worker node should now be setup. You ca
 
 ## Other Resources
 These are some resources we found helpful along the way. 
-- [Munge docs](https://dun.github.io/munge/)
-- [Slurm docs](https://slurm.schedmd.com/overview.html)
-- [Blog on how to set up Slurm](https://www.bodunhu.com/blog/posts/set-up-slurm-across-multiple-machines/)
+- [Munge docs](https://dun.github.io/munge/) by Chris Dunlap
+- [Slurm docs](https://slurm.schedmd.com/overview.html) from SchedMD
+- [Great blog we used to help set up our Slurm cluster](https://www.bodunhu.com/blog/posts/set-up-slurm-across-multiple-machines/) by Bodun Hu
 
 ## FAQ
 ### What is Slurm?
 Slurm is a cluster managament and job scheduling system for Linux clusters. It has very extensive documentation that can be found [here](https://slurm.schedmd.com/quickstart.html). 
 
 ### Why did we write this?
-We are a group of students from the University of Iowa Quant Finance Club who struggled for weeks with setting up a Slurm cluster. We made every mistake in the book and looked everywhere for guides on how to setup clusters, but the guides we found were either going above our heads or missing critical information. So, we decided to document our process and put it on the web and, hopefully, it'll be able to help other dummies set up HPC clusters.
+We are a group of students from the University of Iowa Quant Finance Club who struggled for weeks with setting up a Slurm cluster. We made every mistake in the book and looked everywhere for guides on how to setup clusters, but the guides we found were either going above our heads or missing critical information. So, we decided to document our process and put it on the web and, hopefully, it'll be able to help other students/practitioners set up HPC clusters.
 
