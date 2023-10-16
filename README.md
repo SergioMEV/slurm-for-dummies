@@ -11,7 +11,7 @@ A step-by-step guide on how to setup Slurm HPC clusters written for dummies by d
 
 ## Step-by-Step Overview
 These are the steps we followed to setup our Slurm cluster. It is important that you follow the steps in the sequence as they are written. Again, this is just what worked for us on fresh installs of Ubuntu 22.04.03 LTS. 
-> IMPORTANT: Steps marked with __(CONTROL NODE)__ are just performed on you control node and steps marked with __(WORKERS)__ are just performed in your worker nodes. Steps that aren't marked are performed in both.
+> IMPORTANT: Steps marked with __(CONTROLLER NODE)__ are just performed on your controller node and steps marked with __(WORKERS)__ are just performed in your worker nodes. Steps that aren't marked are performed in both.
 
 1. Install Ubuntu 22.04 on all computers in the cluster.
 2. Make sure all users on each computer have the same name. We will call this user on each computer MAIN_USER from here on out.
@@ -35,9 +35,9 @@ $ sudo apt upgrade
 ```
   
 5. [Set up SSH on each computer](#setting-up-ssh)
-6. __(CONTROL NODE)__ Set up [Munge](#setting-up-munge) on your control node first.
+6. __(CONTROLLER NODE)__ Set up [Munge](#setting-up-munge) on your controller node first.
 7. __(WORKERS)__ Set up [Munge](#setting-up-munge) on each of the worker nodes.
-8. Setup [Slurm](#setting-up-slurm) on all machines. Make sure to follow the control node instructions for the control node and the worker node instructions for the worker nodes.
+8. Setup [Slurm](#setting-up-slurm) on all machines. Make sure to follow the controller node instructions for the controller node and the worker node instructions for the worker nodes.
 
 ## Setting up SSH
 Seting up SSH is pretty simple. You just run the following command:
@@ -53,7 +53,7 @@ If SSH is succesful, you should know be in a remote shell connected to the host 
 Remember to do this on each computer.
 
 ## Setting up Munge
-Installing Munge is pretty straightforward once you figure out what you're doing. However, the one thing that can get tricky is the file permissions, so make sure you follow the steps in order. Also, we recommend configuring the control node first and then configuring the worker nodes.
+Installing Munge is pretty straightforward once you figure out what you're doing. However, the one thing that can get tricky is the file permissions, so make sure you follow the steps in order. Also, we recommend configuring the controller node first and then configuring the worker nodes.
 
 ### Control Node
 First, run the following command to install the munge packages.
@@ -85,7 +85,7 @@ $ sudo systemctl start munge (If you get an error here, try doing restart instea
 That's it! Now, you can go ahead and set up your worker nodes. Also, for convenience you can now save your `munge.key` located at `/etc/munge/' to an easily accessible location. You will need to copy that key over to the other nodes in the cluster when setting them up. We go over that in detail next.
 
 ### Worker Nodes
-For each worker node we follow the same procedure. Similar to the control node, you first install munge, like so:
+For each worker node we follow the same procedure. Similar to the controller node, you first install munge, like so:
 ```
 $ sudo apt install munge libmunge2 libmunge-dev
 ```
@@ -93,7 +93,7 @@ We check if munge is installed correctly, like so:
 ```
 $ munge -n | unmunge | grep STATUS
 ```
-Again, you should see something like `STATUS: SUCCESS`. Now, munge is correctly installed on this node, however we still need to copy our control node's key to this node. To do that, simply replace the worker node's `munge.key` file located at `/etc/munge/' with the control node's `munge.key` file. The most straightforward way we found to do this was to put the control node's 'munge.key' onto a USB drive and then plug the USB drive into the worker node. 
+Again, you should see something like `STATUS: SUCCESS`. Now, munge is correctly installed on this node, however we still need to copy our controller node's key to this node. To do that, simply replace the worker node's `munge.key` file located at `/etc/munge/' with the controller node's `munge.key` file. The most straightforward way we found to do this was to put the controller node's 'munge.key' onto a USB drive and then plug the USB drive into the worker node. 
 
 Once you have swapped out `munge.key`, we need to make sure munge's permissions are correct on this worker node. We do that like so:
 ```
@@ -110,16 +110,16 @@ $ sudo systemctl enable munge
 $ sudo systemctl restart munge
 ```
 
-Now, we can test the munge connection to the control node, like so:
+Now, we can test the munge connection to the controller node, like so:
 ```
-$ munge -n | ssh <CONTROL_NODE> unmunge 
+$ munge -n | ssh <CONTROLLER_NODE> unmunge 
 ```
-Make sure to replace `<CONTROL_NODE>` with host alias of your control node. If this is successful, you should see the munge status of the control node. If you get an error, try restarting the munge service on the control node.
+Make sure to replace `<CONTROLLER_NODE>` with host alias of your controller node. If this is successful, you should see the munge status of the controller node. If you get an error, try restarting the munge service on the controller node.
 
 ## Setting up Slurm
-The process to install and set up Slurm is almost the same in the control node and the worker nodes. The only significant difference is which service we have to start and enable. 
+The process to install and set up Slurm is almost the same in the controller node and the worker nodes. The only significant difference is which service we have to start and enable. 
 ### Control Node
-To install Slurm on your control node do the following. First, install the required packages with:
+To install Slurm on your controller node do the following. First, install the required packages with:
 ```
 $ sudo apt install slurm-wlm
 ```
@@ -128,14 +128,14 @@ Then, use slurm's handy configuration file generator located at `/usr/share/doc/
 
 You don't have to fill out all of the fields in the configuration tool since a lot of them can be left to their defaults. The following fields are the once we had to manually configure:
 - ClusterName: `<YOUR-CLUSTER-NAME>`
-- SlurmctldHost: `<CONTROL-NODE-NAME>`
+- SlurmctldHost: `<CONTROLLER-NODE-NAME>`
 - NodeName: `<WORKER-NODE-NAME>`[1-3] (this would mean that you have 4 worker nodes called `<WORKER-NODE-NAME>1`, `<WORKER-NODE-NAME>2`, `<WORKER-NODE-NAME>3`)
 - Enter values for CPUs, Sockets, CoresPerSocket, and ThreadsPerCore according to $ lscpu (run on node computer)
 - ProctrackType: linuxproc
 
 Once you press the `submit` button at the bottom of the configuration tool a configuration file should be created at `/etc/slurm/slurm.conf`.
 
-Now, we have to start the slurm controller node service and configure it to start at startup, like so: 
+Now, we have to start the slurm controllerler node service and configure it to start at startup, like so: 
 ```
 $ sudo systemctl enable slurmctld
 $ sudo systemctl start slurmctld
@@ -154,11 +154,11 @@ $ srun -N<NUMBER-OF-NODES> hostname
 Where `<NUMBER-OF-NODES>` is the number of worker nodes that are currently set up. If you followed all of the steps correctly, this should return the name of all of your nodes.
 
 ### Worker Nodes
-We follow a similar procedure to the control node for each worker node. First, we install slurm like so:
+We follow a similar procedure to the controller node for each worker node. First, we install slurm like so:
 ```
 $ sudo apt install slurm-wlm
 ```
-Next, we create the configuration file. You have to make sure all the configuration files in your cluster match, so it is simpler here to just copy the `slurm.conf` configuration file from your control node. If you don't want to copy it over, then just create it the same way you did in the control node.
+Next, we create the configuration file. You have to make sure all the configuration files in your cluster match, so it is simpler here to just copy the `slurm.conf` configuration file from your controller node. If you don't want to copy it over, then just create it the same way you did in the controller node.
 
 Now, we start the slurm worker node service and configure it to start at startup.
 ```
@@ -171,7 +171,7 @@ Then, we can verify slurm is set up correctly and running like so:
 $ sudo systemctl status slurmd
 ```
 
-As long as you got no errors, your slurm worker node should now be setup. You can check that it is running correctly by using the `sinfo` or `srun` commands on your control node.
+As long as you got no errors, your slurm worker node should now be setup. You can check that it is running correctly by using the `sinfo` or `srun` commands on your controller node.
 
 ## Other Resources
 These are some resources we found helpful along the way. 
