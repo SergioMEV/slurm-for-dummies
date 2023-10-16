@@ -19,11 +19,11 @@ These are the steps we followed to setup our Slurm cluster. It is important that
 4. Make sure that all computers on the cluster have each other in their known hosts file. This file can be found at `/etc/hosts`. To add a known host to the file, you have to add the hosts IP address and the hosts alias separated by a space on a newline in the file. Our `/etc/hosts` file looked something like this:
 ``` 
 127.0.0.1 localhost
-XXX.XXX.XX.XX0	cluster0
-XXX.XXX.XX.XX1	cluster1
-XXX.XXX.XX.XX2	cluster2
-XXX.XXX.XX.XX3	cluster3
-XXX.XXX.XX.XX4	cluster4
+XXX.XXX.XX.XX0	node0
+XXX.XXX.XX.XX1	node1
+XXX.XXX.XX.XX2	node2
+XXX.XXX.XX.XX3	node3
+XXX.XXX.XX.XX4	node4
 ```
 > Note that the Xs here stand for numbers in our IP addresses. The aliases are also arbitrary, you can name your nodes whatever you like.
 
@@ -46,7 +46,7 @@ $ sudo apt install openssh-server openssh-client
 ```
 Then, to test whether it was installed correctly, we can attempt to SSH into another computer in the cluster like so:
 ```
-$ ssh <hostname>			 (<hostname> would be the alias of another cluster. For example, cluster1 if you’re on cluster0) 
+$ ssh <hostname>			 (<hostname> would be the alias of another cluster. For example, node1 if you’re on node0) 
 ```
 If SSH is succesful, you should know be in a remote shell connected to the host with name `<hostname>`. If you want to learn more about SSH, visit this [page](https://ubuntu.com/server/docs/service-openssh).
 
