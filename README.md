@@ -1,5 +1,5 @@
 # Slurm for Dummies 
-A step-by-step guide on how to setup Slurm HPC clusters written for dummies by dummies from the UIowa Quant Finance Club 2023. We are by no means experts, but what is enclosed herein was learned through grueling trial and error.
+A step-by-step guide on how to setup Slurm HPC clusters written for dummies by dummies from the 2023 University of Iowa Quantitative Finance Club. We are by no means experts, but what is enclosed herein was learned through grueling trial and error.
 
 ### Table of Contents
 - [Overview](#step-by-step-overview)
