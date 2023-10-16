@@ -10,7 +10,7 @@ A step-by-step guide on how to setup Slurm HPC clusters written for dummies by d
 - [FAQ](#faq)
 
 ## Step-by-Step Overview
-These are the steps we followed to setup our Slurm cluster. It is important that you follow the steps in the sequence as they are written. Again, this is just what worked for us on fresh installs of Ubuntu 22.04LTS. 
+These are the steps we followed to setup our Slurm cluster. It is important that you follow the steps in the sequence as they are written. Again, this is just what worked for us on fresh installs of Ubuntu 22.04.03 LTS. 
 > IMPORTANT: Steps marked with __(CONTROL NODE)__ are just performed on you control node and steps marked with __(WORKERS)__ are just performed in your worker nodes. Steps that aren't marked are performed in both.
 
 1. Install Ubuntu 22.04 on all computers in the cluster.
