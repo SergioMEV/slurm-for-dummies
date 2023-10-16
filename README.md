@@ -129,8 +129,8 @@ Then, use slurm's handy configuration file generator located at `/usr/share/doc/
 You don't have to fill out all of the fields in the configuration tool since a lot of them can be left to their defaults. The following fields are the once we had to manually configure:
 - ClusterName: `<YOUR-CLUSTER-NAME>`
 - SlurmctldHost: `<CONTROLLER-NODE-NAME>`
-- NodeName: `<WORKER-NODE-NAME>`[1-3] (this would mean that you have 4 worker nodes called `<WORKER-NODE-NAME>1`, `<WORKER-NODE-NAME>2`, `<WORKER-NODE-NAME>3`)
-- Enter values for CPUs, Sockets, CoresPerSocket, and ThreadsPerCore according to $ lscpu (run on node computer)
+- NodeName: `<WORKER-NODE-NAME>`[1-4] (this would mean that you have four worker nodes called `<WORKER-NODE-NAME>1`, `<WORKER-NODE-NAME>2`, `<WORKER-NODE-NAME>3`, `<WORKER-NODE-NAME>4`)
+- Enter values for CPUs, Sockets, CoresPerSocket, and ThreadsPerCore according to $ lscpu (run on a worker node computer)
 - ProctrackType: linuxproc
 
 Once you press the `submit` button at the bottom of the configuration tool a configuration file should be created at `/etc/slurm/slurm.conf`.
