@@ -2,14 +2,14 @@
 A step-by-step guide on how to setup Slurm HPC clusters written for dummies by dummies from the 2023 University of Iowa Quantitative Finance Club. We are by no means experts, but what is enclosed herein was learned through grueling trial and error.
 
 ### Table of Contents
-- [Overview](#step-by-step-overview)
+- [Preliminary Steps & Overview](#step-by-step-overview)
 - [Set up SSH on each computer](#setting-up-ssh)
 - [Setting up Munge](#setting-up-munge)
 - [Setting up Slurm Service](#setting-up-slurm)
 - [Other Resources](#other-resources)
 - [FAQ](#faq)
 
-## Step-by-Step Overview
+## Preliminary Steps & Overview
 These are the steps we followed to setup our Slurm cluster. It is important that you follow the steps in the sequence as they are written. Again, this is just what worked for us on fresh installs of Ubuntu 22.04.03 LTS. 
 > IMPORTANT: Steps marked with __(CONTROLLER NODE)__ are just performed on your controller node and steps marked with __(WORKERS)__ are just performed in your worker nodes. Steps that aren't marked are performed in both.
 
