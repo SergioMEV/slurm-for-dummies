@@ -36,7 +36,7 @@ $ sudo apt upgrade
   
 5. [Set up SSH on each computer](#setting-up-ssh)
 6. __(CONTROLLER NODE)__ Set up [Munge](#setting-up-munge) on your controller node first.
-7. __(WORKERS)__ Set up [Munge](#setting-up-munge) on each of the worker nodes.
+7. __(WORKER NODES)__ Set up [Munge](#setting-up-munge) on each of the worker nodes.
 8. Setup [Slurm](#setting-up-slurm) on all machines. Make sure to follow the controller node instructions for the controller node and the worker node instructions for the worker nodes.
 
 ## Setting up SSH
@@ -55,7 +55,7 @@ Remember to do this on each computer.
 ## Setting up Munge
 Installing Munge is pretty straightforward once you figure out what you're doing. However, the one thing that can get tricky is the file permissions, so make sure you follow the steps in order. Also, we recommend configuring the controller node first and then configuring the worker nodes.
 
-### Control Node
+### Controller Node
 First, run the following command to install the munge packages.
 ```
 $ sudo apt install munge libmunge2 libmunge-dev
@@ -118,7 +118,7 @@ Make sure to replace `<CONTROLLER_NODE>` with host alias of your controller node
 
 ## Setting up Slurm
 The process to install and set up Slurm is almost the same in the controller node and the worker nodes. The only significant difference is which service we have to start and enable. 
-### Control Node
+### Controller Node
 To install Slurm on your controller node do the following. First, install the required packages with:
 ```
 $ sudo apt install slurm-wlm
