@@ -2,14 +2,14 @@
 A step-by-step guide on how to setup Slurm HPC clusters written for dummies by dummies from the 2023 University of Iowa Quantitative Finance Club. We are by no means experts, but what is enclosed herein was learned through grueling trial and error.
 
 ### Table of Contents
-- [Preliminary Steps & Overview](#step-by-step-overview)
+- [Step-by-Step Overview](#step-by-step-overview)
 - [Set up SSH on each computer](#setting-up-ssh)
 - [Setting up Munge](#setting-up-munge)
 - [Setting up Slurm Service](#setting-up-slurm)
 - [Other Resources](#other-resources)
 - [FAQ](#faq)
 
-## Preliminary Steps & Overview
+## Step-by-Step Overview
 These are the steps we followed to setup our Slurm cluster. It is important that you follow the steps in the sequence as they are written. Again, this is just what worked for us on fresh installs of Ubuntu 22.04.03 LTS. 
 > IMPORTANT: Steps marked with __(CONTROLLER NODE)__ are just performed on your controller node and steps marked with __(WORKERS)__ are just performed in your worker nodes. Steps that aren't marked are performed in both.
 
@@ -38,6 +38,30 @@ $ sudo apt upgrade
 6. __(CONTROLLER NODE)__ Set up [Munge](#setting-up-munge) on your controller node first.
 7. __(WORKER NODES)__ Set up [Munge](#setting-up-munge) on each of the worker nodes.
 8. Setup [Slurm](#setting-up-slurm) on all machines. Make sure to follow the controller node instructions for the controller node and the worker node instructions for the worker nodes.
+
+## First Steps
+1. Install Ubuntu 22.04 on all computers in the cluster.
+> We recommend you turn off any sort of inactivity shutdown timer on all computers.
+3. Make sure the user on each computer has the same name. We will call this user on each computer MAIN_USER from here on out.
+4. Make sure to update your router's DHCP static IP settings, manually entering each computer’s MAC address with their IP respective address.
+5. Make sure that all computers on the cluster have each other in their known hosts file. This file can be found at `/etc/hosts`. To add a known host to the file, you have to add the hosts IP address and the hosts alias separated by a space on a newline in the file. Our `/etc/hosts` file looked something like this:
+``` 
+127.0.0.1 localhost
+XXX.XXX.XX.XX0	node0
+XXX.XXX.XX.XX1	node1
+XXX.XXX.XX.XX2	node2
+XXX.XXX.XX.XX3	node3
+XXX.XXX.XX.XX4	node4
+```
+> Note that the Xs here stand for numbers in our IP addresses. The aliases (node0, node1, etc.) are also arbitrary, you can name your nodes whatever you like.
+
+4. Run the following commands in your shell on each computer to update and upgrade all packages in that system.
+
+```
+$ sudo apt update
+$ sudo apt upgrade
+```
+
 
 ## Setting up SSH
 Seting up SSH is pretty simple. You just run the following command:
