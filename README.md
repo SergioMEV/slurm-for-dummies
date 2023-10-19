@@ -103,8 +103,8 @@ $ sudo chmod 0755 /run/munge/
 
 Next, we need to restart the munge service and configure it to run at startup. We do that like so:
 ```
-$ sudo systemctl enable munge
-$ sudo systemctl start munge (If you get an error here, try doing restart instead of start)
+$ systemctl enable munge
+$ systemctl start munge (If you get an error here, try doing restart instead of start)
 ```
 That's it! Now, you can go ahead and set up your worker nodes. Also, for convenience you can now save your `munge.key` located at `/etc/munge/' to an easily accessible location. You will need to copy that key over to the other nodes in the cluster when setting them up. We go over that in detail next.
 
@@ -130,8 +130,8 @@ $ sudo chown -R munge: /etc/munge/munge.key
 
 Next, we start the munge service and configure it to start at startup.
 ```
-$ sudo systemctl enable munge
-$ sudo systemctl restart munge
+$ systemctl enable munge
+$ systemctl restart munge
 ```
 
 Now, we can test the munge connection to the controller node, like so:
