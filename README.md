@@ -159,7 +159,10 @@ You don't have to fill out all of the fields in the configuration tool since a l
 - Enter values for CPUs, Sockets, CoresPerSocket, and ThreadsPerCore according to $ lscpu (run on a worker node computer)
 - ProctrackType: LinuxProc
 
-Once you press the `submit` button at the bottom of the configuration tool a configuration file should be created at `/etc/slurm/slurm.conf`.
+Once you press the `submit` button at the bottom of the configuration tool your configuration file data will appear in your browser. Copy this into a new /etc/slurm/slurm.conf file and save.
+'''
+$ sudo nano /etc/slurm/slurm.conf
+'''
 
 Now, we have to start the slurm controllerler node service and configure it to start at startup, like so: 
 ```
