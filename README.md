@@ -99,6 +99,8 @@ To set up the correct permissions, use the following commands:
 $ sudo chown -R munge: /etc/munge/ /var/log/munge/ /var/lib/munge/ /run/munge/
 $ sudo chmod 0700 /etc/munge/ /var/log/munge/ /var/lib/munge/
 $ sudo chmod 0755 /run/munge/
+$ sudo chmod 0700 /etc/munge/munge.key
+$ sudo chown -R munge: /etc/munge/munge.key
 ```
 
 Next, we need to restart the munge service and configure it to run at startup. We do that like so:
