@@ -150,7 +150,7 @@ $ sudo apt install slurm-wlm
 ```
 
 ### Controller Node
-To install Slurm on your controller node do the following. 
+To configure Slurm on your controller node do the following. 
 
 Use slurm's handy configuration file generator located at `/usr/share/doc/slurmctld/slurm-wlm-configurator.html` to create your configuration file. You can open the configurator file with your browser. 
 > Slurm configuration files are a complicated topic and what values you have to fill in is specific to your machines. If you want to learn more about it, go [here](https://slurm.schedmd.com/slurm.conf.html).
@@ -168,7 +168,7 @@ $ sudo nano /etc/slurm/slurm.conf
 ```
 At this point you should copy the text from your created slurm.conf to each worker node's /etc/slurm/slurm.conf. We found the best way to do this was to copy our created slurm.conf file to a thumbdrive, then use the previous command on each worker node to create the slurm.conf file and then copy the text from our thumbdrive slurm.conf and save.
 
-Now, we have to start the slurm controllerler node service and configure it to start at startup, like so: 
+Now, we have to start the slurm controller node service and configure it to start at startup, like so: 
 ```
 $ sudo systemctl enable slurmctld
 $ sudo systemctl start slurmctld
