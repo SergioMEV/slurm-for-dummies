@@ -162,7 +162,7 @@ You don't have to fill out all of the fields in the configuration tool since a l
 - Enter values for CPUs, Sockets, CoresPerSocket, and ThreadsPerCore according to $ lscpu (run on a worker node computer)
 - ProctrackType: LinuxProc
 
-Once you press the `submit` button at the bottom of the configuration tool your configuration file text will appear in your browser. Copy this into a new /etc/slurm/slurm.conf file and save.
+Once you press the `submit` button at the bottom of the configuration tool your configuration file text will appear in your browser. Copy this text into a new /etc/slurm/slurm.conf file and save.
 ```
 $ sudo nano /etc/slurm/slurm.conf
 ```
