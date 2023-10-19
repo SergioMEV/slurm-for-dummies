@@ -131,7 +131,7 @@ $ sudo chown -R munge: /etc/munge/munge.key
 Next, we start the munge service and configure it to start at startup.
 ```
 $ systemctl enable munge
-$ systemctl start munge
+$ systemctl start munge (If you get an error here, try doing restart instead of start)
 ```
 
 Now, we can test the munge connection to the controller node, like so:
