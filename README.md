@@ -25,7 +25,7 @@ XXX.XXX.XX.XX2	node2
 XXX.XXX.XX.XX3	node3
 XXX.XXX.XX.XX4	node4
 ```
-> Note that the Xs here stand for numbers in our IP addresses. The aliases (node0, node1, etc.) are also arbitrary, you can name your nodes whatever you like.
+> Note that the Xs here stand for numbers in our IP addresses. The aliases (node0, node1, etc.) are also arbitrary, you can name your nodes whatever you like. There will likely be other networking configurations in this file, leave it unchanged.
 
 4. Run the following commands in your shell on each computer to update and upgrade all packages in that system.
 
@@ -52,10 +52,8 @@ XXX.XXX.XX.XX1	node1
 XXX.XXX.XX.XX2	node2
 XXX.XXX.XX.XX3	node3
 XXX.XXX.XX.XX4	node4
-
-... there will likely be some other networking data below, leave unchanged. 
 ```
-> Note that the Xs here stand for numbers in our IP addresses. The aliases (node0, node1, etc.) are also arbitrary, you can name your nodes whatever you like.
+> Note that the Xs here stand for numbers in our IP addresses. The aliases (node0, node1, etc.) are also arbitrary, you can name your nodes whatever you like. There will likely be other networking configurations in this file, leave it unchanged.
 
 4. Run the following commands in your shell on each computer to update and upgrade all packages in that system.
 
