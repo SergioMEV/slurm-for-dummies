@@ -157,7 +157,7 @@ You don't have to fill out all of the fields in the configuration tool since a l
 - SlurmctldHost: `<CONTROLLER-NODE-NAME>`
 - NodeName: `<WORKER-NODE-NAME>`[1-4] (this would mean that you have four worker nodes called `<WORKER-NODE-NAME>1`, `<WORKER-NODE-NAME>2`, `<WORKER-NODE-NAME>3`, `<WORKER-NODE-NAME>4`)
 - Enter values for CPUs, Sockets, CoresPerSocket, and ThreadsPerCore according to $ lscpu (run on a worker node computer)
-- ProctrackType: linuxproc
+- ProctrackType: LinuxProc
 
 Once you press the `submit` button at the bottom of the configuration tool a configuration file should be created at `/etc/slurm/slurm.conf`.
 
