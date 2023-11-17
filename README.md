@@ -203,7 +203,10 @@ As long as you got no errors, your slurm worker node should now be setup. You ca
 ```
 $ srun hostname
 ```
-
+You can investigate errors in more detail by looking in the slurm log file:
+```
+$ sudo nano /var/log/slurm.slurmd.log
+```
 ## Other Resources
 These are some resources we found helpful along the way. 
 - [Munge docs](https://dun.github.io/munge/) by Chris Dunlap
