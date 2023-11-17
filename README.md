@@ -167,7 +167,7 @@ At this point you should copy the text from your created slurm.conf to each work
 Now, we have to start the slurm controller node service and configure it to start at startup, like so: 
 ```
 $ systemctl enable slurmctld
-$ systemctl start slurmctld
+$ systemctl restart slurmctld
 ```
 
 You can now check your slurm installation is runnning and your cluster is set up with the following commands:
@@ -191,7 +191,7 @@ $ sudo nano /etc/slurm/slurm.conf
 Now, we start the slurm worker node service and configure it to start at startup.
 ```
 $ systemctl enable slurmd
-$ systemctl start slurmd
+$ systemctl restart slurmd
 ```
 
 Then, we can verify slurm is set up correctly and running like so:
