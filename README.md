@@ -2,30 +2,19 @@
 A step-by-step guide on how to setup Slurm HPC clusters written for dummies by dummies from the 2023 University of Iowa Quantitative Finance Club under the advisory of Professor John Lewis Jr. We are by no means experts, but what is enclosed herein was learned through grueling trial and error. The primary contributers of this guide are Scott Griffin (scott-griffin@uiowa.edu) and Sergio Martelo (sergio-martelo@uiowa.edu).
 
 ### Table of Contents
-- [Step-by-Step Overview](#step-by-step-overview)
+- [Overview](#step-by-step-overview)
+- [First_Steps](#first-steps)
 - [Set up SSH on each computer](#setting-up-ssh)
 - [Setting up Munge](#setting-up-munge)
 - [Setting up Slurm Service](#setting-up-slurm)
 - [Other Resources](#other-resources)
 - [FAQ](#faq)
 
-## Step-by-Step Overview
+## Overview
 These are the steps we followed to setup our Slurm cluster. It is important that you follow the steps in the sequence as they are written. Again, this is just what worked for us on fresh installs of Ubuntu 22.04.03 LTS. 
 > IMPORTANT: Steps marked with __(CONTROLLER NODE)__ are just performed on your controller node and steps marked with __(WORKERS)__ are just performed in your worker nodes. Steps that aren't marked are performed in both.
 
-1. Install Ubuntu 22.04 on all computers in the cluster.
-2. Make sure all users on each computer have the same name. We will call this user on each computer MAIN_USER from here on out.
-3. Make sure to update your router's DHCP static IP settings, manually entering each computer’s MAC address with their IP respective address.
-4. Make sure that all computers on the cluster have each other in their known hosts file. This file can be found at `/etc/hosts`. To add a known host to the file, you have to add the hosts IP address and the hosts alias separated by a space on a newline in the file. Our `/etc/hosts` file looked something like this:
-``` 
-127.0.0.1 localhost
-XXX.XXX.XX.XX0	node0
-XXX.XXX.XX.XX1	node1
-XXX.XXX.XX.XX2	node2
-XXX.XXX.XX.XX3	node3
-XXX.XXX.XX.XX4	node4
-```
-> Note that the Xs here stand for numbers in our IP addresses. The aliases (node0, node1, etc.) are also arbitrary, you can name your nodes whatever you like. There will likely be other networking configurations in this file, leave them unchanged.
+1.-4. Install Ubuntu on all computers, make sure all users have the same name, update router DHCP static IP addresses, update /etc/hosts file to include all computers.
 
 4. Run the following commands in your shell on each computer to update and upgrade all packages in that system.
 
@@ -42,7 +31,7 @@ $ sudo apt upgrade
 ## First Steps
 1. Install Ubuntu 22.04 on all computers in the cluster.
 > We recommend you turn off any sort of inactivity shutdown timer on all computers.
-3. Make sure the user on each computer has the same name. We will call this user on each computer MAIN_USER from here on out.
+3. Make sure the first user on each computer is the same. We will call this user on each computer MAIN_USER from here on out. Each computer will be called node0, node1, etc.
 4. Make sure to update your router's DHCP static IP settings, manually entering each computer’s MAC address with their IP respective address.
 5. Make sure that all computers on the cluster have each other in their known hosts file. This file can be found at `/etc/hosts`. To add a known host to the file, you have to add the hosts IP address and the hosts alias separated by a space on a newline in the file. Our `/etc/hosts` file looked something like this:
 ``` 
@@ -61,7 +50,6 @@ XXX.XXX.XX.XX4	node4
 $ sudo apt update
 $ sudo apt upgrade
 ```
-
 
 ## Setting up SSH
 Seting up SSH is pretty simple. You just run the following command:
