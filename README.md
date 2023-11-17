@@ -93,7 +93,7 @@ $ sudo chown -R munge: /etc/munge/munge.key
 Next, we need to restart the munge service and configure it to run at startup. We do that like so:
 ```
 $ systemctl enable munge
-$ systemctl start munge (If you get an error here, try doing restart instead of start)
+$ systemctl restart munge
 ```
 You can investigate munge service errors with:
 ```
@@ -124,7 +124,7 @@ $ sudo chown -R munge: /etc/munge/munge.key
 Next, we start the munge service and configure it to start at startup.
 ```
 $ systemctl enable munge
-$ systemctl start munge (If you get an error here, try doing restart instead of start)
+$ systemctl restart munge
 ```
 
 Again, you can investigate munge service errors with:
