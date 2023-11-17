@@ -95,6 +95,10 @@ Next, we need to restart the munge service and configure it to run at startup. W
 $ systemctl enable munge
 $ systemctl start munge (If you get an error here, try doing restart instead of start)
 ```
+You can investigate munge service errors with:
+```
+$ systemctl status munge
+```
 That's it! Now, you can go ahead and set up your worker nodes. Also, for convenience you can now save your `munge.key` located at `/etc/munge/' to an easily accessible location. You will need to copy that key over to the other nodes in the cluster when setting them up. We go over that in detail next.
 
 ### Worker Nodes
@@ -121,6 +125,11 @@ Next, we start the munge service and configure it to start at startup.
 ```
 $ systemctl enable munge
 $ systemctl start munge (If you get an error here, try doing restart instead of start)
+```
+
+Again, you can investigate munge service errors with:
+```
+$ systemctl status munge
 ```
 
 Now, we can test the munge connection to the controller node, like so:
@@ -191,6 +200,9 @@ $ systemctl status slurmd
 ```
 
 As long as you got no errors, your slurm worker node should now be setup. You can check that it is running correctly by using the `sinfo` or `srun` commands on your controller node.
+```
+$ srun hostname
+```
 
 ## Other Resources
 These are some resources we found helpful along the way. 
