@@ -3,7 +3,7 @@ A step-by-step guide on how to setup Slurm HPC clusters written for dummies by d
 
 ### Table of Contents
 - [Overview](#step-by-step-overview)
-- [First_Steps](#first-steps)
+- [First Steps](#first-steps)
 - [Set up SSH on each computer](#setting-up-ssh)
 - [Setting up Munge](#setting-up-munge)
 - [Setting up Slurm Service](#setting-up-slurm)
