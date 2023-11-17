@@ -14,7 +14,7 @@ A step-by-step guide on how to setup Slurm HPC clusters written for dummies by d
 These are the steps we followed to setup our Slurm cluster. It is important that you follow the steps in the sequence as they are written. Again, this is just what worked for us on fresh installs of Ubuntu 22.04.03 LTS. 
 > IMPORTANT: Steps marked with __(CONTROLLER NODE)__ are just performed on your controller node and steps marked with __(WORKERS)__ are just performed in your worker nodes. Steps that aren't marked are performed in both.
 
-1. - 4. Install Ubuntu on all computers, make sure all users have the same name, update router DHCP static IP addresses, update /etc/hosts file to include all computers.
+1. through 4. Install Ubuntu on all computers, make sure all users have the same name, update router DHCP static IP addresses, update /etc/hosts file to include all computers.
 
 4. Run the following commands in your shell on each computer to update and upgrade all packages in that system.
 
