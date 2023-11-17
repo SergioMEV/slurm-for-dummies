@@ -178,7 +178,7 @@ $ sinfo		# returns cluster information
 
 Once you have your worker nodes set up, you can also check the cluster is correctly set up by running:
 ```
-$ srun -N<NUMBER-OF-NODES> hostname
+$ srun hostname
 ```
 Where `<NUMBER-OF-NODES>` is the number of worker nodes that are currently set up. If you followed all of the steps correctly, this should return the name of all of your nodes.
 
