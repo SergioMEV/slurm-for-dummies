@@ -28,11 +28,11 @@ $ sudo apt upgrade
 6. Setup [Slurm](#setting-up-slurm) on all machines. Make sure to follow the controller node instructions for the controller node and the worker node instructions for the worker nodes.
 
 ## First Steps
-1. Install Ubuntu 22.04 on all computers in the cluster.
+Install Ubuntu 22.04 on all computers in the cluster.
 > We recommend you turn off any sort of inactivity shutdown timer on all computers.
-3. Make sure the first user on each computer is the same. We will call this user on each computer MAIN_USER from here on out. Each computer will be called node0, node1, etc.
-4. Make sure to update your router's DHCP static IP settings, manually entering each computer’s MAC address with their IP respective address.
-5. Make sure that all computers on the cluster have each other in their known hosts file. This file can be found at `/etc/hosts`. To add a known host to the file, you have to add the hosts IP address and the hosts alias separated by a space on a newline in the file. Our `/etc/hosts` file looked something like this:
+Make sure the first user on each computer is the same. We will call this user on each computer MAIN_USER from here on out. Each computer will be called node0, node1, etc.
+Make sure to update your router's DHCP static IP settings, manually entering each computer’s MAC address with their IP respective address.
+Make sure that all computers on the cluster have each other in their known hosts file. This file can be found at `/etc/hosts`. To add a known host to the file, you have to add the hosts IP address and the hosts alias separated by a space on a newline in the file. Our `/etc/hosts` file looked something like this:
 ``` 
 127.0.0.1 localhost
 XXX.XXX.XX.XX0	node0
@@ -43,7 +43,7 @@ XXX.XXX.XX.XX4	node4
 ```
 > Note that the Xs here stand for numbers in our IP addresses. The aliases (node0, node1, etc.) are also arbitrary, you can name your nodes whatever you like. There will likely be other networking configurations in this file, leave them unchanged.
 
-4. Run the following commands in your shell on each computer to update and upgrade all packages in that system.
+Run the following commands in your shell on each computer to update and upgrade all packages in that system.
 
 ```
 $ sudo apt update
