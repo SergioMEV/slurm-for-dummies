@@ -3,10 +3,10 @@ A step-by-step guide on how to setup Slurm HPC clusters written for dummies by d
 
 ### Table of Contents
 - [Overview](#step-by-step-overview)
-- [First Steps](#first-steps)
-- [Set up SSH on each computer](#setting-up-ssh)
-- [Setting up Munge](#setting-up-munge)
-- [Setting up Slurm Service](#setting-up-slurm)
+- [Set up network and install ubuntu](#set-up-network-and-install-ubuntu)
+- [Set up SSH on each computer](#set-up-ssh)
+- [Set up Munge](#set-up-munge)
+- [Set up Slurm](#set-up-slurm)
 - [Other Resources](#other-resources)
 - [FAQ](#faq)
 
@@ -15,12 +15,12 @@ These are the steps we followed to setup our Slurm cluster. It is important that
 > IMPORTANT: Steps marked with __(CONTROLLER NODE)__ are just performed on your controller node and steps marked with __(WORKERS)__ are just performed in your worker nodes. Steps that aren't marked are performed in both.
 
 1. Install Ubuntu on all computers, make sure all users have the same name, configure a private network with DHCP static IP addresses, update /etc/hosts file to include all computers.
-2. [Set up SSH on each computer](#setting-up-ssh)
-3. __(CONTROLLER NODE)__ Set up [Munge](#setting-up-munge) on your controller node first.
-4. __(WORKER NODES)__ Set up [Munge](#setting-up-munge) on each of the worker nodes.
-5. Setup [Slurm](#setting-up-slurm) on all machines. Make sure to follow the controller node instructions for the controller node and the worker node instructions for the worker nodes.
+2. [Set up SSH on each computer](#set-up-ssh)
+3. __(CONTROLLER NODE)__ Set up [Munge](#set-up-munge) on your controller node first.
+4. __(WORKER NODES)__ Set up [Munge](#set-up-munge) on each of the worker nodes.
+5. Setup [Slurm](#set-up-slurm) on all machines. Make sure to follow the controller node instructions for the controller node and the worker node instructions for the worker nodes.
 
-## First Steps
+## Set up network and install ubuntu
 Install Ubuntu 22.04 on all computers in the cluster.
 > We recommend you turn off any sort of inactivity shutdown timer on all computers.
 
@@ -44,7 +44,7 @@ $ sudo apt update
 $ sudo apt upgrade
 ```
 
-## Setting up SSH
+## Set up SSH
 Seting up SSH is pretty simple. You just run the following command:
 ```
 $ sudo apt install openssh-server openssh-client
@@ -57,10 +57,10 @@ If SSH is succesful, you should know be in a remote shell connected to the host 
 
 Remember to do this on each computer.
 
-## Setting up Munge
+## Set up Munge
 Installing Munge is pretty straightforward once you figure out what you're doing. However, the one thing that can get tricky is the file permissions, so make sure you follow the steps in order. Also, we recommend configuring the controller node first and then configuring the worker nodes.
 
-### Controller Node
+### Controller node
 First, run the following command to install the munge packages.
 ```
 $ sudo apt install munge libmunge2 libmunge-dev
@@ -95,7 +95,7 @@ $ systemctl status munge
 ```
 That's it! Now, you can go ahead and set up your worker nodes. Also, for convenience you can now save your `munge.key` located at `/etc/munge/' to an easily accessible location. You will need to copy that key over to the other nodes in the cluster when setting them up. We go over that in detail next.
 
-### Worker Nodes
+### Worker nodes
 For each worker node we follow the same procedure. Similar to the controller node, you first install munge, like so:
 ```
 $ sudo apt install munge libmunge2 libmunge-dev
@@ -132,14 +132,14 @@ $ munge -n | ssh <CONTROLLER_NODE> unmunge
 ```
 Make sure to replace `<CONTROLLER_NODE>` with host alias of your controller node. If this is successful, you should see the munge status of the controller node. If you get an error, try restarting the munge service on the controller node.
 
-## Setting up Slurm
+## Set up Slurm
 The process to install and set up Slurm is almost the same in the controller node and the worker nodes. The only significant difference is which service we have to start and enable. 
 First, on all nodes, install the required packages with:
 ```
 $ sudo apt install slurm-wlm
 ```
 
-### Controller Node
+### Controller node
 To configure Slurm on your controller node do the following. 
 
 Use slurm's handy configuration file generator located at `/usr/share/doc/slurmctld/slurm-wlm-configurator.html` to create your configuration file. You can open the configurator file with your browser. 
@@ -176,7 +176,7 @@ $ srun hostname
 ```
 Where `<NUMBER-OF-NODES>` is the number of worker nodes that are currently set up. If you followed all of the steps correctly, this should return the name of all of your nodes.
 
-### Worker Nodes
+### Worker nodes
 We follow a similar procedure to the controller node for each worker node. Be sure to copy the text from your created slurm.conf to each worker node's /etc/slurm/slurm.conf. We found the best way to do this was to copy our created slurm.conf file to a thumbdrive, then use the following command on each worker node to create the slurm.conf file and then copy the text from our thumbdrive slurm.conf and save.
 ```
 $ sudo nano /etc/slurm/slurm.conf
