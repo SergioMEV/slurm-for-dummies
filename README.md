@@ -1,7 +1,7 @@
 # Slurm for Dummies 
 A step-by-step guide on how to setup Slurm HPC clusters written for dummies by dummies from the 2023 University of Iowa Quantitative Finance Club under the advisory of Professor John Lewis Jr. We are by no means experts, but what is enclosed herein was learned through grueling trial and error. The primary contributers of this guide are Scott Griffin (scott-griffin@uiowa.edu) and Sergio Martelo (sergio-martelo@uiowa.edu).
 
-### Table of Contents
+### Table of contents
 - [Overview](#step-by-step-overview)
 - [Set up network and install ubuntu](#set-up-network-and-install-ubuntu)
 - [Set up SSH on each computer](#set-up-ssh)
