@@ -3,10 +3,10 @@ A step-by-step guide on how to setup Slurm HPC clusters written for dummies by d
 
 ### Table of Contents
 - [Overview](#step-by-step-overview)
-- [Set up network and install ubuntu](#set-up-network-and-install-ubuntu)
-- [Set up SSH on each computer](#set-up-ssh)
-- [Set up Munge](#set-up-munge)
-- [Set up Slurm](#set-up-slurm)
+- [Setup Network and Install Ubuntu](#setup-network-and-install-ubuntu)
+- [Setup SSH on Each Computer](#setup-ssh)
+- [Setup Munge](#setup-munge)
+- [Setup Slurm](#setup-slurm)
 - [Other Resources](#other-resources)
 - [FAQ](#faq)
 
@@ -15,12 +15,12 @@ These are the steps we followed to setup our Slurm cluster. It is important that
 > IMPORTANT: Steps marked with __(CONTROLLER NODE)__ are just performed on your controller node and steps marked with __(WORKERS)__ are just performed in your worker nodes. Steps that aren't marked are performed in both.
 
 1. Install Ubuntu on all computers, make sure all users have the same name, configure a private network with DHCP static IP addresses, update /etc/hosts file to include all computers.
-2. [Set up SSH on each computer](#set-up-ssh)
-3. __(CONTROLLER NODE)__ Set up [Munge](#set-up-munge) on your controller node first.
-4. __(WORKER NODES)__ Set up [Munge](#set-up-munge) on each of the worker nodes.
-5. Setup [Slurm](#set-up-slurm) on all machines. Make sure to follow the controller node instructions for the controller node and the worker node instructions for the worker nodes.
+2. [Setup SSH on Each Computer](#setup-ssh)
+3. __(CONTROLLER NODE)__ Setup [Munge](#setup-munge) on your controller node first.
+4. __(WORKER NODES)__ Setup [Munge](#setup-munge) on each of the worker nodes.
+5. Setup [Slurm](#setup-slurm) on all machines. Make sure to follow the controller node instructions for the controller node and the worker node instructions for the worker nodes.
 
-## Set Up Network and Install Ubuntu
+## Setup Network and Install Ubuntu
 Install Ubuntu 22.04 on all computers in the cluster.
 > We recommend you turn off any sort of inactivity shutdown timer on all computers.
 
@@ -44,7 +44,7 @@ $ sudo apt update
 $ sudo apt upgrade
 ```
 
-## Set up SSH
+## Setup SSH
 Seting up SSH is pretty simple. You just run the following command:
 ```
 $ sudo apt install openssh-server openssh-client
@@ -57,7 +57,7 @@ If SSH is succesful, you should know be in a remote shell connected to the host 
 
 Remember to do this on each computer.
 
-## Set up Munge
+## Setup Munge
 Installing Munge is pretty straightforward once you figure out what you're doing. However, the one thing that can get tricky is the file permissions, so make sure you follow the steps in order. Also, we recommend configuring the controller node first and then configuring the worker nodes.
 
 ### Controller node
@@ -75,7 +75,7 @@ $ sudo /usr/sbin/mungekey
 ```
 Now, we have to ensure all of the munge files have the correct permissions. This just entails giving the munge user ownership over all the munge files. You don't have to create the munge user manually since it should have been created by munge when we installed the packages above. In fact, we recommend saving yourself the trouble and not creating the user yourself. We had a lot of troubles stem from trying to create it ourselves.
 
-To set up the correct permissions, use the following commands:
+To Setup the correct permissions, use the following commands:
 ```
 $ sudo chown -R munge: /etc/munge/ /var/log/munge/ /var/lib/munge/ /run/munge/
 $ sudo chmod 0700 /etc/munge/ /var/log/munge/ /var/lib/munge/
@@ -93,7 +93,7 @@ You can investigate munge service errors with:
 ```
 $ systemctl status munge
 ```
-That's it! Now, you can go ahead and set up your worker nodes. Also, for convenience you can now save your `munge.key` located at `/etc/munge/' to an easily accessible location. You will need to copy that key over to the other nodes in the cluster when setting them up. We go over that in detail next.
+That's it! Now, you can go ahead and Setup your worker nodes. Also, for convenience you can now save your `munge.key` located at `/etc/munge/' to an easily accessible location. You will need to copy that key over to the other nodes in the cluster when setting them up. We go over that in detail next.
 
 ### Worker nodes
 For each worker node we follow the same procedure. Similar to the controller node, you first install munge, like so:
@@ -132,8 +132,8 @@ $ munge -n | ssh <CONTROLLER_NODE> unmunge
 ```
 Make sure to replace `<CONTROLLER_NODE>` with host alias of your controller node. If this is successful, you should see the munge status of the controller node. If you get an error, try restarting the munge service on the controller node.
 
-## Set up Slurm
-The process to install and set up Slurm is almost the same in the controller node and the worker nodes. The only significant difference is which service we have to start and enable. 
+## Setup Slurm
+The process to install and Setup Slurm is almost the same in the controller node and the worker nodes. The only significant difference is which service we have to start and enable. 
 First, on all nodes, install the required packages with:
 ```
 $ sudo apt install slurm-wlm
@@ -164,17 +164,17 @@ $ systemctl enable slurmctld
 $ systemctl restart slurmctld
 ```
 
-You can now check your slurm installation is runnning and your cluster is set up with the following commands:
+You can now check your slurm installation is runnning and your cluster is Setup with the following commands:
 ```
 $ systemctl status slurmctld # returns status of slurm service
 $ sinfo		# returns cluster information
 ```
 
-Once you have your worker nodes set up, you can also check the cluster is correctly set up by running:
+Once you have your worker nodes Setup, you can also check the cluster is correctly Setup by running:
 ```
 $ srun hostname
 ```
-Where `<NUMBER-OF-NODES>` is the number of worker nodes that are currently set up. If you followed all of the steps correctly, this should return the name of all of your nodes.
+Where `<NUMBER-OF-NODES>` is the number of worker nodes that are currently Setup. If you followed all of the steps correctly, this should return the name of all of your nodes.
 
 ### Worker nodes
 We follow a similar procedure to the controller node for each worker node. Be sure to copy the text from your created slurm.conf to each worker node's /etc/slurm/slurm.conf. We found the best way to do this was to copy our created slurm.conf file to a thumbdrive, then use the following command on each worker node to create the slurm.conf file and then copy the text from our thumbdrive slurm.conf and save.
@@ -188,7 +188,7 @@ $ systemctl enable slurmd
 $ systemctl restart slurmd
 ```
 
-Then, we can verify slurm is set up correctly and running like so:
+Then, we can verify slurm is Setup correctly and running like so:
 ```
 $ systemctl status slurmd
 ```
@@ -205,12 +205,12 @@ $ sudo nano /var/log/slurm.slurmd.log
 These are some resources we found helpful along the way. 
 - [Munge docs](https://dun.github.io/munge/) by Chris Dunlap
 - [Slurm docs](https://slurm.schedmd.com/overview.html) from SchedMD
-- [Great blog we used to help set up our Slurm cluster](https://www.bodunhu.com/blog/posts/set-up-slurm-across-multiple-machines/) by Bodun Hu
+- [Great blog we used to help Setup our Slurm cluster](https://www.bodunhu.com/blog/posts/setup-slurm-across-multiple-machines/) by Bodun Hu
 
 ## FAQ
 ### What is Slurm?
 Slurm is a cluster managament and job scheduling system for Linux clusters. It has very extensive documentation that can be found [here](https://slurm.schedmd.com/quickstart.html). 
 
 ### Why did we write this?
-We are a group of students from the University of Iowa Quant Finance Club who struggled for weeks with setting up a Slurm cluster. We made every mistake in the book and looked everywhere for guides on how to setup clusters, but the guides we found were either going above our heads or missing critical information. So, we decided to document our process and put it on the web and, hopefully, it'll be able to help other students/practitioners set up HPC clusters.
+We are a group of students from the University of Iowa Quant Finance Club who struggled for weeks with setting up a Slurm cluster. We made every mistake in the book and looked everywhere for guides on how to setup clusters, but the guides we found were either going above our heads or missing critical information. So, we decided to document our process and put it on the web and, hopefully, it'll be able to help other students/practitioners Setup HPC clusters.
 
