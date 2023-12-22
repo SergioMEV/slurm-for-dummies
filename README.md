@@ -23,8 +23,9 @@ These are the steps we followed to setup our Slurm cluster. It is important that
 ## First Steps
 Install Ubuntu 22.04 on all computers in the cluster.
 > We recommend you turn off any sort of inactivity shutdown timer on all computers.
+
 Make sure the first user on each computer is the same. We will call this user on each computer MAIN_USER from here on out. Each computer will be called node0, node1, etc.
-Make sure to update your router's DHCP static IP settings, manually entering each computer’s MAC address with their IP respective address.
+Create a private netowrk and update your router's DHCP static IP settings, manually entering each computer’s MAC address with their IP respective address.
 Make sure that all computers on the cluster have each other in their known hosts file. This file can be found at `/etc/hosts`. To add a known host to the file, you have to add the hosts IP address and the hosts alias separated by a space on a newline in the file. Our `/etc/hosts` file looked something like this:
 ``` 
 127.0.0.1 localhost
