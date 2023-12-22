@@ -14,18 +14,11 @@ A step-by-step guide on how to setup Slurm HPC clusters written for dummies by d
 These are the steps we followed to setup our Slurm cluster. It is important that you follow the steps in the sequence as they are written. Again, this is just what worked for us on fresh installs of Ubuntu 22.04.03 LTS. 
 > IMPORTANT: Steps marked with __(CONTROLLER NODE)__ are just performed on your controller node and steps marked with __(WORKERS)__ are just performed in your worker nodes. Steps that aren't marked are performed in both.
 
-1. Install Ubuntu on all computers, make sure all users have the same name, update router DHCP static IP addresses, update /etc/hosts file to include all computers.
-2. Run the following commands in your shell on each computer to update and upgrade all packages in that system.
-
-```
-$ sudo apt update
-$ sudo apt upgrade
-```
-  
-3. [Set up SSH on each computer](#setting-up-ssh)
-4. __(CONTROLLER NODE)__ Set up [Munge](#setting-up-munge) on your controller node first.
-5. __(WORKER NODES)__ Set up [Munge](#setting-up-munge) on each of the worker nodes.
-6. Setup [Slurm](#setting-up-slurm) on all machines. Make sure to follow the controller node instructions for the controller node and the worker node instructions for the worker nodes.
+1. Install Ubuntu on all computers, make sure all users have the same name, configure a private network with DHCP static IP addresses, update /etc/hosts file to include all computers.
+2. [Set up SSH on each computer](#setting-up-ssh)
+3. __(CONTROLLER NODE)__ Set up [Munge](#setting-up-munge) on your controller node first.
+4. __(WORKER NODES)__ Set up [Munge](#setting-up-munge) on each of the worker nodes.
+5. Setup [Slurm](#setting-up-slurm) on all machines. Make sure to follow the controller node instructions for the controller node and the worker node instructions for the worker nodes.
 
 ## First Steps
 Install Ubuntu 22.04 on all computers in the cluster.
