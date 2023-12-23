@@ -3,7 +3,7 @@ A step-by-step guide on how to setup Slurm HPC clusters written for dummies by d
 
 ### Table of Contents
 - [Overview](#step-by-step-overview)
-- [Setup Network and Install Ubuntu](#setup-network-and-install-ubuntu)
+- [Setup Private Network and Install Ubuntu](#setup-private-network-and-install-ubuntu)
 - [Setup SSH on Each Computer](#setup-ssh)
 - [Setup Munge](#setup-munge)
 - [Setup Slurm](#setup-slurm)
@@ -20,7 +20,7 @@ These are the steps we followed to setup our Slurm cluster. It is important that
 4. __(WORKER NODES)__ Setup [Munge](#setup-munge) on each of the worker nodes.
 5. Setup [Slurm](#setup-slurm) on all machines. Make sure to follow the controller node instructions for the controller node and the worker node instructions for the worker nodes.
 
-## Setup Network and Install Ubuntu
+## Setup Private Network and Install Ubuntu
 Install Ubuntu 22.04 on all computers in the cluster.
 > We recommend you turn off any sort of inactivity shutdown timer on all computers.
 
