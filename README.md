@@ -25,6 +25,9 @@ Install Ubuntu 22.04 on all computers in the cluster.
 > We recommend you turn off any sort of inactivity shutdown timer on all computers.
 
 Make sure the first user's name on each computer is the same. We'll will call this user MAIN_USER from now on. Each computer will be called node0, node1, etc.
+![image](https://github.com/SergioMEV/slurm-for-dummies/assets/22201134/61cf759f-b129-4523-a3c9-acb542caab48)
+
+
 Create a private network and update your router's DHCP static IP settings, manually entering each computer’s MAC address with their IP respective address.
 Make sure that all computers on the cluster have each other in their known hosts file. This file can be found at `/etc/hosts`. To add a known host to the file, you have to add the hosts IP address and the hosts alias separated by a space on a newline in the file. Our `/etc/hosts` file looked something like this:
 ``` 
