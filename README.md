@@ -26,7 +26,7 @@ Install Ubuntu 22.04 on all computers in the cluster.
 
 Make sure the first user's name on each computer is the same. We'll will call this user MAIN_USER from now on. Each computer will be called node0, node1, etc.
 
-![image](https://github.com/SergioMEV/slurm-for-dummies/assets/22201134/6d32e255-5101-401f-b683-51c66a81554d)
+![image](https://github.com/SergioMEV/slurm-for-dummies/assets/22201134/6d9b043a-d7ba-48c3-871e-0f98a59b4e0a)
 
 
 Create a private network and update your router's DHCP static IP settings, manually entering each computer’s MAC address with their IP respective address.
