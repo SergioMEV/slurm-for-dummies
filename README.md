@@ -26,7 +26,8 @@ Install Ubuntu 22.04 on all computers in the cluster.
 
 Make sure the first user's name on each computer is the same. We'll will call this user MAIN_USER from now on. Each computer will be called node0, node1, etc.
 
-<img src="[drawing.jpg](https://github.com/SergioMEV/slurm-for-dummies/assets/22201134/1d2fc4bf-8a4c-45c5-a411-78a8fcde44a3)" alt="ubuntu setup example" style="width:50%;height:auto;"/>
+![image](https://github.com/SergioMEV/slurm-for-dummies/assets/22201134/6d32e255-5101-401f-b683-51c66a81554d)
+
 
 Create a private network and update your router's DHCP static IP settings, manually entering each computer’s MAC address with their IP respective address.
 Make sure that all computers on the cluster have each other in their known hosts file. This file can be found at `/etc/hosts`. To add a known host to the file, you have to add the hosts IP address and the hosts alias separated by a space on a newline in the file. Our `/etc/hosts` file looked something like this:
