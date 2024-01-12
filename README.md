@@ -77,6 +77,8 @@ You should see something like `STATUS: SUCCESS`. Now, you have Munge correctly i
 ```
 $ sudo /usr/sbin/mungekey
 ```
+> With future updates of munge, slurm, and ubuntu, specific file locations may change.
+
 Now, we have to ensure all of the munge files have the correct permissions. This just entails giving the munge user ownership over all the munge files. You don't have to create the munge user manually since it should have been created by munge when we installed the packages above. In fact, we recommend saving yourself the trouble and not creating the user yourself. We had a lot of troubles stem from trying to create it ourselves.
 
 To Setup the correct permissions, use the following commands:
@@ -97,6 +99,12 @@ You can investigate munge service errors with:
 ```
 $ systemctl status munge
 ```
+Or
+```
+$ sudo nano /var/log/munge/munged.log
+```
+
+
 That's it! Now, you can go ahead and Setup your worker nodes. Also, for convenience you can now save your `munge.key` located at `/etc/munge/' to an easily accessible location. You will need to copy that key over to the other nodes in the cluster when setting them up. We go over that in detail next.
 
 ### Worker nodes
@@ -128,6 +136,10 @@ $ systemctl restart munge
 Again, you can investigate munge service errors with:
 ```
 $ systemctl status munge
+```
+Or
+```
+$ sudo nano /var/log/munge/munged.log
 ```
 
 Now, we can test the munge connection to the controller node, like so:
